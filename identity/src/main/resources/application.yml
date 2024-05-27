@@ -1,5 +1,38 @@
-spring:
-  application:
-   name: identity
 server:
   port: 8950
+
+spring:
+  application:
+    name: identity
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource # 指定使用阿里连接池
+    url: jdbc:mysql://192.144.239.113:3306/your_database_name
+    username: your_database_username
+    password: your_database_password
+    driver-class-name: com.mysql.jdbc.Driver # 指定使用MySQL驱动
+
+  security:
+    jwt:
+      secret: your_secret_key
+      expiration: 86400000 # token expiration time in milliseconds (default is 24 hours)
+  redis:
+    host: 192.144.239.113
+    port: 6379
+    database: 0
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.example.entity
+  global-config:
+    db-config:
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+logging:
+  level:
+    root: INFO
+    org:
+      springframework:
+        security: DEBUG
+knife4j:
+  springfox:
+    base-path: /custom-swagger-ui-path  # 自定义Swagger UI路径
+    base-package: com.zzf.music.**.controller  # 扫描接口的包路径

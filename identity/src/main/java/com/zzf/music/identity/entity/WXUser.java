@@ -6,8 +6,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- *
  * 微信用户信息
+ *
  * @author
  * @date 2023/11/1 16:20
  */

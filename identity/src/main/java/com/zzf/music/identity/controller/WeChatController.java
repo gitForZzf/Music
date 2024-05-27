@@ -16,7 +16,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/weChat")
-public class WeChatController{
+public class WeChatController {
 
     @ResponseBody
     @GetMapping("/verifyToken")

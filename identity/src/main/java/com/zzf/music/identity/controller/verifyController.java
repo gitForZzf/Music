@@ -15,9 +15,9 @@ import java.util.Map;
 @RequestMapping("verify")
 public class verifyController {
 
-    @RequestMapping(value = "/NWCTtest",produces = "application/json; charset=utf-8")
+    @RequestMapping(value = "/NWCTtest", produces = "application/json; charset=utf-8")
     @ResponseBody
-    public String test(){
+    public String test() {
         System.out.println("内网穿透成功");
         return "内网穿透成功";
     }
@@ -57,6 +57,6 @@ public class verifyController {
         String userInfoJsom = WeiXinUtil.getUserInfo(accessToken, openid);
         WXUser userInfo = JSONObject.parseObject(userInfoJsom, WXUser.class);
         System.out.println(userInfoJsom);
-        return "<h1><b>"+userInfo.getNickname()+"<img src=\""+userInfo.getHeadimgurl()+"\" alt=\"用户头像\"></b>看样子成功了,没你事了退下吧</h1>";
+        return "<h1><b>" + userInfo.getNickname() + "<img src=\"" + userInfo.getHeadimgurl() + "\" alt=\"用户头像\"></b>看样子成功了,没你事了退下吧</h1>";
     }
 }

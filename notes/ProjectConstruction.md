@@ -1,12 +1,17 @@
 # Music
+
 music Demo
+
 ## 在github创建项目
+
     参考 https://blog.csdn.net/weixin_50592077/article/details/129852095
 
 ## 中文乱码
+
     控制台和浏览器中文乱码 在ieda设置中 File encodings 设置为UTF-8 后解决
 
 ## 子模块打包启动时爆错 报错没有主清单属性
+
     <build>
         <plugins>
             <plugin>

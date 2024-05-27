@@ -26,6 +26,7 @@ public class WeiXinUtil {
 
     /**
      * 获取微信授权code
+     *
      * @param state 附加信息
      * @return
      */
@@ -50,6 +51,7 @@ public class WeiXinUtil {
 
     /**
      * 获取微信AccessToken
+     *
      * @param code 用户code
      * @return
      */
@@ -74,6 +76,7 @@ public class WeiXinUtil {
 
     /**
      * 刷新AccessToken
+     *
      * @param refreshToken
      * @return
      */
@@ -95,6 +98,7 @@ public class WeiXinUtil {
 
     /**
      * 获取用户信息
+     *
      * @param accessToken
      * @param openid
      * @return
