@@ -6,9 +6,9 @@ spring:
     name: identity
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource # 指定使用阿里连接池
-    url: jdbc:mysql://192.144.239.113:3306/your_database_name
-    username: your_database_username
-    password: your_database_password
+    url: jdbc:mysql://192.144.239.113:3306/music
+    username: root
+    password: Qwer&1234
     driver-class-name: com.mysql.jdbc.Driver # 指定使用MySQL驱动
 
   security:
