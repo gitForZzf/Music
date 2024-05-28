@@ -4,23 +4,54 @@
 ### 首先，确保你的系统已经安装了MySQL的依赖库。可以使用以下命令安装：
     sudo apt-get update
     sudo apt-get install libaio1
-### 接下来，下载MySQL 5.7的安装包。可以从MySQL官方网站下载对应版本的安装包，或者使用以下命令下载：
-    wget https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.35-linux-glibc2.12-x86_64.tar.gz
-### 解压下载的安装包：
-    tar -zxvf mysql-5.7.35-linux-glibc2.12-x86_64.tar.gz
-### 将解压后的文件夹移动到指定目录：
-    sudo mv mysql-5.7.35-linux-glibc2.12-x86_64 /usr/local/mysql
-### 进入MySQL安装目录，初始化MySQL数据库：
-    cd /usr/local/mysql
-    sudo ./bin/mysqld --initialize --user=mysql
-### 启动MySQL服务：
-    sudo ./bin/mysqld_safe --user=mysql &
-### 最后，设置MySQL root用户密码：
-    sudo ./bin/mysql_secure_installation
-完成以上步骤后，你就成功在终端或命令行下安装了MySQL 5.7
+## 下载MySQL 5.7的yum仓库配置文件：
+    sudo wget https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm
+## 安装MySQL 5.7的yum仓库配置文件：
+    sudo rpm -Uvh mysql57-community-release-el7-11.noarch.rpm
+## 清除yum缓存：
+    sudo yum clean all
+## 安装MySQL 5.7社区版服务器：
+    sudo yum install mysql-community-server
+## 报错解决
+    1、All matches were filtered out by modular filtering for argument: mysql-community-server Error: Unable to find a match: mysql-community-server
+    模块过滤导致无法找到mysql-community-server软件包的问题。这可能是因为在你的系统中启用了模块化仓库    
+    解决办法：
+        禁用模块化仓库：
+            sudo dnf module disable mysql
+        清除yum缓存：
+            sudo yum clean all
+        再次尝试安装mysql-community-server：
+            sudo yum install mysql-community-server
+    2、继续报错： You can remove cached packages by executing 'yum clean packages'. Error: GPG check FAILED
+    遇到了GPG校验失败的问题。这通常是由于下载的软件包的GPG签名与系统中的GPG密钥不匹配导致的
+    解决办法：
+    禁用GPG校验安装软件包：
+        sudo yum install mysql-community-server --nogpgcheck
+    3、继续报错： Error: Transaction test error: file /etc/my.cnf from install of mysql-community-server-5.7.44-1.el7.x86_64 conflicts with file from package mariadb-connector-c-config-3.1.11-2.oc8.1.noarch
+    遇到了文件冲突的问题，其中/etc/my.cnf文件在mysql-community-server和mariadb-connector-c-config软件包中都存在，导致安装失败。
+    解决办法：
+    卸载mariadb-connector-c-config软件包
+    sudo yum remove mariadb-connector-c-config
+## 重新 执行 sudo yum install mysql-community-server --nogpgcheck  安装成功
+
+## 启动mysql服务
+    启动MySQL服务并设置开机自启：
+    sudo systemctl start mysqld
+    sudo systemctl enable mysqld
+
+## 获取mysql初始密码
+    获取初始密码。MySQL 5.7安装完成后，会生成一个临时密码。运行以下命令获取临时密码：
+    sudo grep 'temporary password' /var/log/mysqld.log
+## 使用临时密码登录MySQL，并设置新密码（注意密码要被单引号包裹）：
+    mysql -u root -p
+    ALTER USER root@localhost IDENTIFIED BY 'your_new_password';
 
 ## 密码
     要求必须包含大小写字母 特殊符合和数字  可在配置文件中关闭校验（本次没关）
+
+## 可以通过以下命令检查MySQL服务状态：
+    sudo systemctl status mysqld
+
 ## 防火墙放行 3306 端口
 
 ## 开启mysql远程访问

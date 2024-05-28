@@ -6,22 +6,28 @@ spring:
     name: identity
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource # 指定使用阿里连接池
-    url: jdbc:mysql://192.144.239.113:3306/music
+    url: jdbc:mysql://192.144.239.113:3306/music?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false&allowMultiQueries=true
     username: root
     password: Qwer&1234
     driver-class-name: com.mysql.jdbc.Driver # 指定使用MySQL驱动
-
+  jpa:
+    open-in-view: false # 关闭JPA自动创建视图
   security:
     jwt:
-      secret: your_secret_key
+      secret: zzf
       expiration: 86400000 # token expiration time in milliseconds (default is 24 hours)
+    user:
+      name: admin
+      password: 123456
+
   redis:
     host: 192.144.239.113
     port: 6379
+    password: redis123456
     database: 0
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.example.entity
+  type-aliases-package: com.zzf.music.identity.entity
   global-config:
     db-config:
       logic-delete-value: 1
@@ -34,5 +40,10 @@ logging:
         security: DEBUG
 knife4j:
   springfox:
-    base-path: /custom-swagger-ui-path  # 自定义Swagger UI路径
+    enable: true  # 开启Swagger UI
+    base-path: /swagger  # 自定义Swagger UI路径
     base-package: com.zzf.music.**.controller  # 扫描接口的包路径
+    user-name: admin  # 用户名
+    password: 123456  # 密码
+
+
