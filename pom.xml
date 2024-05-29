@@ -8,7 +8,8 @@
     <version>0.0.1-SNAPSHOT</version>
 
     <modules>
-        <module>identity</module>
+        <module>gateway</module>
+        <module>user</module>
     </modules>
     <!--    pom 代表是父工程配置-->
     <packaging>pom</packaging>
@@ -30,6 +31,7 @@
         <springfox.swagger-ui.version>3.0.0</springfox.swagger-ui.version>
         <hutool-all.version>5.8.10</hutool-all.version>
         <knife4j-spring-boot-starter.version>3.0.3</knife4j-spring-boot-starter.version>
+        <spring-cloud.version>2020.0.3</spring-cloud.version>
     </properties>
 
 
@@ -48,7 +50,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>2020.0.3</version>
+                <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
