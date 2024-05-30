@@ -1,6 +1,5 @@
 package com.zzf.music.gateway.filter;
 
-import com.zzf.music.gateway.utils.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.http.HttpStatus;

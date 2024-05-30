@@ -1,6 +1,5 @@
 package com.zzf.music.gateway.config;
 
-import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.rewrite.RewriteFunction;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
@@ -27,3 +26,4 @@ public class GatewayConfig {
                 .build();
     }
 }
+

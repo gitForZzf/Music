@@ -34,6 +34,7 @@
         <knife4j-spring-boot-starter.version>3.0.3</knife4j-spring-boot-starter.version>
         <spring-cloud.version>2020.0.3</spring-cloud.version>
         <revision>0.0.1-SNAPSHOT</revision>
+        <commons-lang3.version>3.12.0</commons-lang3.version>
     </properties>
 
 
@@ -75,6 +76,12 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-jpa</artifactId>
                 <version>${spring-boot.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
             </dependency>
 
             <!-- MySQL Connector -->
@@ -152,6 +159,5 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
 
 </project>
