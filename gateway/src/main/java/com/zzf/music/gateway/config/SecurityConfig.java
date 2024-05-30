@@ -1,4 +1,4 @@
-package com.zzf.music.gateway.config;//package com.zzf.music.gateway.config;
+//package com.zzf.music.gateway.config;
 //
 //
 //import com.zzf.music.gateway.entity.WXUser;
@@ -58,5 +58,5 @@ package com.zzf.music.gateway.config;//package com.zzf.music.gateway.config;
 //                .addFilterBefore(new JwtTokenFilter(jwtTokenProvider,redisConnectionFactory,userDetailsService), UsernamePasswordAuthenticationFilter.class); // 添加JWT过滤器
 //    }
 //}
-
-
+//
+//

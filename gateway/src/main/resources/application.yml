@@ -15,7 +15,6 @@ spring:
   jpa:
     open-in-view: false # \u5173\u95EDJPA\u81EA\u52A8\u521B\u5EFA\u89C6\u56FE
   security:
-    enabled: false
     jwt:
       secret: zzf
       expiration: 86400000 # token expiration time in milliseconds (default is 24 hours)

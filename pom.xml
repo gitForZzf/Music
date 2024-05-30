@@ -10,6 +10,7 @@
     <modules>
         <module>gateway</module>
         <module>user</module>
+        <module>platform</module>
     </modules>
     <!--    pom 代表是父工程配置-->
     <packaging>pom</packaging>
@@ -32,11 +33,18 @@
         <hutool-all.version>5.8.10</hutool-all.version>
         <knife4j-spring-boot-starter.version>3.0.3</knife4j-spring-boot-starter.version>
         <spring-cloud.version>2020.0.3</spring-cloud.version>
+        <revision>0.0.1-SNAPSHOT</revision>
     </properties>
 
 
     <dependencyManagement>
         <dependencies>
+            <!-- 平台公共代码 -->
+            <dependency>
+                <groupId>com.zzf.music</groupId>
+                <artifactId>platform</artifactId>
+                <version>${revision}</version>
+            </dependency>
             <!-- Spring Boot -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
