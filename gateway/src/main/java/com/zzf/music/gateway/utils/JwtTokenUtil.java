@@ -4,6 +4,7 @@ import com.zzf.music.gateway.entity.JwtUser;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.Data;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
+@Data
 public class JwtTokenUtil implements Serializable {
     private String secret;
     private Long expiration;
@@ -66,6 +68,11 @@ public class JwtTokenUtil implements Serializable {
         }
     }
 
+    /**
+     * 刷新token
+     * @param token
+     * @return
+     */
     public String refreshToken(String token) {
         String refreshedToken;
         try {
@@ -80,11 +87,55 @@ public class JwtTokenUtil implements Serializable {
         return refreshedToken;
     }
 
+    /**
+     * 验证 token
+     * @param token
+     * @param userDetails
+     * @return
+     */
     public Boolean validateToken(String token, UserDetails userDetails) {
         JwtUser user = (JwtUser) userDetails;
         String username = getUsernameFromToken(token);
         return (username.equals(user.getUsername()) && !isTokenExpired(token));
 
+    }
+
+    /**
+     * 获取jwt的过期时间
+     * @param token
+     * @return
+     */
+    public Date getExpirationDateFromToken(String token) {
+        Claims claims = getClaimsFromToken(token);
+        return claims.getExpiration();
+    }
+
+    /**
+     * 检查Token是否可刷新
+     */
+    public Boolean canTokenBeRefreshed(String token) {
+        // 检查令牌是否过期以及是否可以刷新
+        return !isTokenExpired(token);
+    }
+
+    /**
+     * 获取Token的创建时间
+     * @param token
+     * @return
+     */
+    public Date getIssuedAtDateFromToken(String token) {
+        Claims claims = getClaimsFromToken(token);
+        return claims.getIssuedAt();
+    }
+
+    /**
+     *获取Token的签发者信息
+     * @param token
+     * @return
+     */
+    public String getIssuerFromToken(String token) {
+        Claims claims = getClaimsFromToken(token);
+        return claims.getIssuer();
     }
 
 }
