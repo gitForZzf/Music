@@ -2,6 +2,7 @@ package com.zzf.music.gateway.dao;
 
 import com.zzf.music.gateway.entity.UserInfo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
 * @author Administrator
@@ -9,6 +10,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @createDate 2024-05-31 00:29:20
 * @Entity com.zzf.music.gateway.entity.UserInfo
 */
+@Mapper
 public interface UserInfoMapper extends BaseMapper<UserInfo> {
 
     /**
@@ -16,7 +18,7 @@ public interface UserInfoMapper extends BaseMapper<UserInfo> {
      * @param loginName 登录名
      * @return 用户信息
      */
-    UserInfo selectByUserName(String loginName);
+    UserInfo selectByLoginName(String loginName);
 
 }
 

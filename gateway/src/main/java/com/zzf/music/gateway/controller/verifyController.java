@@ -3,7 +3,6 @@ package com.zzf.music.gateway.controller;
 import com.alibaba.fastjson2.JSONObject;
 import com.zzf.music.gateway.entity.WXUser;
 import com.zzf.music.gateway.utils.WeiXinUtil;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,7 +33,7 @@ public class verifyController {
     }
 
     @GetMapping("/getCode")
-    @ApiOperation("获取微信code")
+//    @ApiOperation("获取微信code")
     public String weiXinLogin(@RequestParam(defaultValue = "zzf") String state) {
         System.out.println("调用getCode接口成功");
         System.out.println(WeiXinUtil.getCode(state));
@@ -43,7 +42,7 @@ public class verifyController {
 
     @ResponseBody
     @GetMapping("/getAccessToken")
-    @ApiOperation("获取token")
+//    @ApiOperation("获取token")
     public String getAccessToken(@RequestParam String code) {
         Map result = WeiXinUtil.getAccessToken(code);
         String accessToken = result.get("access_token").toString();

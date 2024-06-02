@@ -26,7 +26,7 @@
         mod_date_time,time_stamp
     </sql>
 
-    <select id="selectByUserName" resultMap="BaseResultMap">
+    <select id="selectByLoginName" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
         from t_user_info
