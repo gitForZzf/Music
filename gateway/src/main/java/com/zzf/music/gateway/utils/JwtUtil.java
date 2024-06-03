@@ -32,45 +32,49 @@ public class JwtUtil {
 
     /**
      * 生成jwt
+     *
      * @param subject token中的有效数据（json格式）
      * @return 生成的jwt
      */
     public static String createJWT(String subject) {
-        JwtBuilder builder = getJwtBuilder(subject,null,getUUID());//设置主题，唯一id
+        JwtBuilder builder = getJwtBuilder(subject, null, getUUID());//设置主题，唯一id
         return builder.compact();
     }
 
     /**
      * 生成jwt
-     * @param subject token中的有效数据（json格式）
+     *
+     * @param subject  token中的有效数据（json格式）
      * @param ttlMills 过期时间
      * @return 生成的jwt
      */
     public static String createJWT(String subject, Long ttlMills) {
-        JwtBuilder builder = getJwtBuilder(subject,ttlMills,getUUID());//设置主题，过期时间，唯一id
+        JwtBuilder builder = getJwtBuilder(subject, ttlMills, getUUID());//设置主题，过期时间，唯一id
         return builder.compact();
     }
 
     /**
      * 获取秘钥
-     * @param id 秘钥id
-     * @param subject 秘钥内容
+     *
+     * @param id       秘钥id
+     * @param subject  秘钥内容
      * @param ttlMills 秘钥过期时间
      * @return 生成的jwt
      */
-    public static String createJwt(String id ,String subject , Long ttlMills){
-        JwtBuilder builder = getJwtBuilder(subject,ttlMills,id);//设置主题，过期时间，唯一id
+    public static String createJwt(String id, String subject, Long ttlMills) {
+        JwtBuilder builder = getJwtBuilder(subject, ttlMills, id);//设置主题，过期时间，唯一id
         return builder.compact();
     }
 
     /**
      * 获取秘钥
-     * @param subject  秘钥内容
+     *
+     * @param subject    秘钥内容
      * @param expiration 秘钥过期时间
-     * @param uuid 秘钥id
+     * @param uuid       秘钥id
      * @return 生成的jwt
      */
-    private static JwtBuilder getJwtBuilder(String subject , Long expiration ,String uuid){
+    private static JwtBuilder getJwtBuilder(String subject, Long expiration, String uuid) {
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
         Key secretkey = getSigningKey();
         long nowMillis = System.currentTimeMillis();
@@ -85,7 +89,7 @@ public class JwtUtil {
                 .setSubject(subject) // 设置主题 可以是json数据
                 .setIssuer("zzf") // 设置签发人
                 .setIssuedAt(now) // 设置签发时间
-                .signWith(secretkey,SignatureAlgorithm.HS256)// 设置签名使用的算法和签名使用的秘钥
+                .signWith(secretkey, SignatureAlgorithm.HS256)// 设置签名使用的算法和签名使用的秘钥
                 .setExpiration(expDate);
     }
 
@@ -115,13 +119,11 @@ public class JwtUtil {
 
         String jwt = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJmYTFlMDk2NjY3MjE0M2I5ODM0NjNmZjQyNDI0YTdiNSIsInN1YiI6IntcIm5hbWVcIjpcInp6ZlwiLFwiYWdlXCI6MTh9IiwiaXNzIjoic2ciLCJpYXQiOjE3MTcyNTI5MzAsImV4cCI6MTcxNzI1NjUzMH0.wRc6yLYWLXn2CNi-ycTjpZLj53-uBW4-2IcD-QYqiRk";
 
-            Claims claims = parseJWT(jwt);
-            System.out.println(claims);
+        Claims claims = parseJWT(jwt);
+        System.out.println(claims);
 
 
     }
-
-
 
 
 }

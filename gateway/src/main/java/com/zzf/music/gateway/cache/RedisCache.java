@@ -1,13 +1,14 @@
 package com.zzf.music.gateway.cache;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.BoundSetOperations;
-import org.springframework.data.redis.core.RedisHash;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
-import java.util.*;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 @SuppressWarnings(value = {"unchecked", "rawtypes"})
@@ -98,9 +99,10 @@ public class RedisCache {
 
     /**
      * 获得缓存的list对象
+     *
      * @param key 缓存key
-     * @return 缓存list对象
      * @param <T> 缓存对象
+     * @return 缓存list对象
      */
     public <T> List<T> getCacheList(final String key) {
         return redisTemplate.opsForList().range(key, 0, -1);
@@ -108,34 +110,37 @@ public class RedisCache {
 
     /**
      * 缓存set
-     * @param key 缓存key
+     *
+     * @param key     缓存key
      * @param dataSet 缓存的数据
+     * @param <T>     缓存对象
      * @return 缓存数量
-     * @param <T> 缓存对象
      */
     public <T> BoundSetOperations<String, T> setCacheSet(final String key, final Set<T> dataSet) {
-       BoundSetOperations<String, T> setOperations = redisTemplate.boundSetOps(key);
+        BoundSetOperations<String, T> setOperations = redisTemplate.boundSetOps(key);
         for (T t : dataSet) {
             setOperations.add(t);
         }
-       return setOperations;
+        return setOperations;
     }
 
     /**
      * 获得缓存的set
+     *
      * @param key 缓存key
-     * @return 缓存的数据
      * @param <T> 缓存对象
+     * @return 缓存的数据
      */
     public <T> Set<T> getCacheSet(final String key) {
         return redisTemplate.opsForSet().members(key);
     }
 
     /**
-     *  缓存Map
-     * @param key 缓存key
+     * 缓存Map
+     *
+     * @param key     缓存key
      * @param dataMap 缓存的数据
-     * @param <T> 缓存对象
+     * @param <T>     缓存对象
      */
     public <T> void setCacheMap(final String key, final Map<String, T> dataMap) {
         if (dataMap != null) {
@@ -145,9 +150,10 @@ public class RedisCache {
 
     /**
      * 获得缓存的Map
+     *
      * @param key 缓存key
-     * @return 缓存的数据
      * @param <T> 缓存对象
+     * @return 缓存的数据
      */
     public <T> Map<String, T> getCacheMap(final String key) {
         return redisTemplate.opsForHash().entries(key);
@@ -155,21 +161,23 @@ public class RedisCache {
 
     /**
      * 对hash表中的字段进行增操作
-     * @param key 缓存key
-     * @param hkey 缓存hkey
+     *
+     * @param key   缓存key
+     * @param hkey  缓存hkey
      * @param value 缓存值
-     * @param <T> 缓存对象
+     * @param <T>   缓存对象
      */
-    public <T> void setCacheMapValue(final String key, final String hkey,final T value) {
+    public <T> void setCacheMapValue(final String key, final String hkey, final T value) {
         redisTemplate.opsForHash().put(key, hkey, value);
     }
 
     /**
      * 获得缓存Hash中的hkey对应的value
-     * @param key 缓存key
+     *
+     * @param key  缓存key
      * @param hkey 缓存hkey
+     * @param <T>  缓存对象
      * @return 缓存对象
-     * @param <T> 缓存对象
      */
     public <T> T getCacheMapValue(final String key, final String hkey) {
         return (T) redisTemplate.opsForHash().get(key, hkey);
@@ -177,7 +185,8 @@ public class RedisCache {
 
     /**
      * 删除hash表中的字段
-     * @param key 缓存key
+     *
+     * @param key  缓存key
      * @param hkey 缓存hkey
      */
     public void deleteCacheMapValue(final String key, final String hkey) {
@@ -186,10 +195,11 @@ public class RedisCache {
 
     /**
      * 获得缓存Map中的所有数据
-     * @param key 缓存key
+     *
+     * @param key   缓存key
      * @param hkeys 缓存hkey
+     * @param <T>   缓存对象
      * @return 缓存对象
-     * @param <T> 缓存对象
      */
     public <T> List<T> getMultiCacheMapValue(final String key, final Collection<Object> hkeys) {
         return redisTemplate.opsForHash().multiGet(key, hkeys);
@@ -197,6 +207,7 @@ public class RedisCache {
 
     /**
      * 获得缓存Map中的所有数据
+     *
      * @param pattern 查询内容
      * @return 缓存对象
      */

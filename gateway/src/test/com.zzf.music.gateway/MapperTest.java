@@ -15,7 +15,7 @@ public class MapperTest {
     private UserInfoMapper userInfoMapper;
 
     @Test
-    public void test(){
+    public void test() {
         UserInfo zzf = userInfoMapper.selectByLoginName("zzf");
         System.out.println(zzf);
     }
