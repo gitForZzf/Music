@@ -2,8 +2,13 @@ package com.zzf.music.gateway.config;
 
 import com.zzf.music.gateway.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -13,23 +18,27 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import javax.annotation.Resource;
 import java.util.Arrays;
 import java.util.Collections;
 
+@Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)//开启基于方法的安全认证机制
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Autowired
+    @Resource(name = "userDetailsServiceImpl")
     private UserDetailsServiceImpl userDetailsService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+//     暴露AuthenticationManager的bean
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -39,17 +48,38 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors(cors -> cors
-                .configurationSource(corsConfigurationSource())
-        ).csrf().disable()
+//        http
+//                .httpBasic()
+//                .and()
+//                /*匿名请求：不须要进行登陆拦截的url*/
+//                .authorizeRequests()
+//                .antMatchers("/music/auth/login").permitAll()
+//                .anyRequest().authenticated()//其余的路径都是登陆后才可访问
+//                .and()
+//                /*登陆配置*/
+//                .formLogin()
+//                .permitAll()
+//                .and()
+//                /*登出配置*/
+//                .logout()
+//                .permitAll()
+//                .and()
+//                .cors() //跨域
+//                .and()
+//                //关闭csrf防御，相似于防火墙，不关闭上面的设置不会真正生效。
+//                .csrf().disable();
+
+
+        http
+                .cors(cors -> cors
+                        .configurationSource(corsConfigurationSource())
+                )
+                .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/music/auth/login").permitAll()  // 允许访问登录路径
                 .anyRequest().authenticated() // 其他路径需要认证
                 .and()
-                .formLogin()
-//                .loginPage("/music/auth/login")
-                .and()
-                .build();
+                .formLogin();
     }
 
     @Bean

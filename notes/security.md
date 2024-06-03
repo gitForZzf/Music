@@ -12,6 +12,9 @@
 
 ## 权限认证失败
     不走实现的userDetailService
+## 若是启动报错
+    org.springframework.security.config.annotation.AlreadyBuiltException: This object has already been built
+    就将配置类的.build()方法注释掉，因为他是链式编程，第一次调用build方法，就会构建对象，第二次调用build方法，就会报错
 
 
 

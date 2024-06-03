@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
-@Service
+@Service("userDetailsServiceImpl")
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Resource
     private UserInfoMapper userInfoMapper;
@@ -25,14 +25,4 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return new LoginUser(user);
     }
 
-//    @Override
-//    public Mono<UserDetails> findByUsername(String s) {
-//
-//        UserInfo user = userInfoMapper.selectByLoginName(s);
-//        if (user == null) {
-//            throw new UsernameNotFoundException(String.format("'%s'.这个用户不存在", s));
-//
-//        }
-//        return Mono.just(new LoginUser(user));
-//    }
 }
