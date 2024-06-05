@@ -1,188 +1,176 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <groupId>com.zzf</groupId>
-        <artifactId>music</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
-    </parent>
-    <modelVersion>4.0.0</modelVersion>
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<groupId>com.zzf</groupId>
+		<artifactId>music</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
 
-    <artifactId>gateway</artifactId>
-    <!--  打包方式  -->
-    <packaging>jar</packaging>
+	<artifactId>gateway</artifactId>
+	<!--  打包方式  -->
+	<packaging>jar</packaging>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.zzf</groupId>
-            <artifactId>platform</artifactId>
-            <scope>compile</scope>
-        </dependency>
-        <!-- Spring Security for authentication and authorization -->
+	<dependencies>
+		<dependency>
+			<groupId>com.zzf</groupId>
+			<artifactId>platform</artifactId>
+			<scope>compile</scope>
+		</dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-            <version>2.5.6</version>
-        </dependency>
+		<!--         Spring Cloud Gateway -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-gateway</artifactId>
+			<version>3.0.3</version>
+		</dependency>
 
-        <!--         Spring Cloud Gateway -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-gateway</artifactId>
-            <version>3.0.3</version>
-        </dependency>
+		<!-- JWT support -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-api</artifactId>
+			<version>0.11.2</version>
+		</dependency>
 
-        <!-- JWT support -->
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-api</artifactId>
-            <version>0.11.2</version>
-        </dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+			<version>0.11.2</version>
+			<scope>runtime</scope>
+		</dependency>
 
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-impl</artifactId>
-            <version>0.11.2</version>
-            <scope>runtime</scope>
-        </dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId>
+			<version>0.11.2</version>
+			<scope>runtime</scope>
+		</dependency>
 
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-jackson</artifactId>
-            <version>0.11.2</version>
-            <scope>runtime</scope>
-        </dependency>
 
-        <!-- Spring Boot Starter -->
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework.boot</groupId>-->
-        <!--            <artifactId>spring-boot-starter</artifactId>-->
-        <!--        </dependency>-->
+		<!-- Spring Boot Starter Data JPA -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
 
-        <!-- Spring Boot Starter Data JPA -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
+		<!-- MySQL Connector -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
 
-        <!-- MySQL Connector -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
+		<!-- Alibaba Druid Connection Pool -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+		</dependency>
 
-        <!-- Alibaba Druid Connection Pool -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
-        </dependency>
+		<!-- MyBatis Plus -->
+		<dependency>
+			<groupId>com.baomidou</groupId>
+			<artifactId>mybatis-plus-boot-starter</artifactId>
+		</dependency>
 
-        <!-- MyBatis Plus -->
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-        </dependency>
+		<!-- lombok       -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
 
-        <!-- lombok       -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+		<!--        hutool工具依赖-->
+		<dependency>
+			<groupId>cn.hutool</groupId>
+			<artifactId>hutool-all</artifactId>
+		</dependency>
 
-        <!--        hutool工具依赖-->
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-        </dependency>
+		<!--        &lt;!&ndash; Swagger3 &ndash;&gt;-->
+		<!--        <dependency>-->
+		<!--            <groupId>io.springfox</groupId>-->
+		<!--            <artifactId>springfox-boot-starter</artifactId>-->
+		<!--        </dependency>-->
+		<!--        &lt;!&ndash; https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui &ndash;&gt;-->
+		<!--        <dependency>-->
+		<!--            <groupId>io.springfox</groupId>-->
+		<!--            <artifactId>springfox-swagger-ui</artifactId>-->
+		<!--        </dependency>-->
+		<!--        &lt;!&ndash; https://mvnrepository.com/artifact/com.github.xiaoymin/knife4j-spring-boot-starter &ndash;&gt;-->
+		<!--        <dependency>-->
+		<!--            <groupId>com.github.xiaoymin</groupId>-->
+		<!--            <artifactId>knife4j-spring-boot-starter</artifactId>-->
+		<!--        </dependency>-->
 
-        <!--        &lt;!&ndash; Swagger3 &ndash;&gt;-->
-        <!--        <dependency>-->
-        <!--            <groupId>io.springfox</groupId>-->
-        <!--            <artifactId>springfox-boot-starter</artifactId>-->
-        <!--        </dependency>-->
-        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui &ndash;&gt;-->
-        <!--        <dependency>-->
-        <!--            <groupId>io.springfox</groupId>-->
-        <!--            <artifactId>springfox-swagger-ui</artifactId>-->
-        <!--        </dependency>-->
-        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/com.github.xiaoymin/knife4j-spring-boot-starter &ndash;&gt;-->
-        <!--        <dependency>-->
-        <!--            <groupId>com.github.xiaoymin</groupId>-->
-        <!--            <artifactId>knife4j-spring-boot-starter</artifactId>-->
-        <!--        </dependency>-->
+		<!-- Spring Data Redis for Redis integration -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
 
-        <!-- Spring Data Redis for Redis integration -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
+		<dependency>
+			<groupId>com.alibaba.fastjson2</groupId>
+			<artifactId>fastjson2</artifactId>
+		</dependency>
 
-        <dependency>
-            <groupId>com.alibaba.fastjson2</groupId>
-            <artifactId>fastjson2</artifactId>
-        </dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
 
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-        </dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+		</dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-        </dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<scope>test</scope> <!-- JUnit Jupiter只在测试阶段需要 -->
+		</dependency>
+		<dependency>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-runner</artifactId>
+			<scope>test</scope> <!-- JUnit Platform只在测试阶段需要 -->
+		</dependency>
+	</dependencies>
 
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <scope>test</scope> <!-- JUnit Jupiter只在测试阶段需要 -->
-        </dependency>
-        <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-runner</artifactId>
-            <scope>test</scope> <!-- JUnit Platform只在测试阶段需要 -->
-        </dependency>
-    </dependencies>
+	<build>
+		<plugins>
 
-    <build>
-        <plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version><!-- 配置中的版本号 -->
+				<configuration>
+					<source>1.8</source><!-- 设置源代码的JDK版本 -->
+					<target>1.8</target><!-- 设置目标代码的JDK版本 -->
+					<encoding>UTF-8</encoding><!-- 设置编码方式 -->
+				</configuration>
+			</plugin>
+			<!--maven 打包插件-->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${spring-boot.version}</version>
+				<configuration>
+					<mainClass>com.zzf.music.gateway.gatewayApplication</mainClass><!-- 配置启动类 -->
+					<skip>false</skip><!--是否忽略启动类-->
+				</configuration>
+				<executions>
+					<execution>
+						<id>repackage</id>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version><!-- 配置中的版本号 -->
-                <configuration>
-                    <source>1.8</source><!-- 设置源代码的JDK版本 -->
-                    <target>1.8</target><!-- 设置目标代码的JDK版本 -->
-                    <encoding>UTF-8</encoding><!-- 设置编码方式 -->
-                </configuration>
-            </plugin>
-            <!--maven 打包插件-->
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot.version}</version>
-                <configuration>
-                    <mainClass>com.zzf.music.gateway.gatewayApplication</mainClass><!-- 配置启动类 -->
-                    <skip>false</skip><!--是否忽略启动类-->
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>repackage</id>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-        </plugins>
-    </build>
+		</plugins>
+	</build>
 </project>

@@ -1,45 +1,9 @@
 server:
   port: 8950
-
 spring:
   application:
     name: gateway
-  main:
-    web-application-type: reactive
-    allow-bean-definition-overriding: true
-  datasource:
-    type: com.alibaba.druid.pool.DruidDataSource # \u6307\u5B9A\u4F7F\u7528\u963F\u91CC\u8FDE\u63A5\u6C60
-    url: jdbc:mysql://192.144.239.113:3306/music?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false&allowMultiQueries=true
-    username: root
-    password: Qwer&1234
-    driver-class-name: com.mysql.jdbc.Driver # \u6307\u5B9A\u4F7F\u7528MySQL\u9A71\u52A8
-  jpa:
-    open-in-view: false # \u5173\u95EDJPA\u81EA\u52A8\u521B\u5EFA\u89C6\u56FE
 
-  redis:
-    host: 192.144.239.113
-    port: 6379
-    password: redis123456
-    database: 0
-mybatis-plus:
-  mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.zzf.music.gateway.entity
-  global-config:
-    db-config:
-      logic-delete-value: 1
-      logic-not-delete-value: 0
 logging:
   level:
     root: INFO
-    org:
-      springframework:
-        security: DEBUG
-knife4j:
-  springfox:
-    enable: true  # \u5F00\u542FSwagger UI
-    base-path: /swagger  # \u81EA\u5B9A\u4E49Swagger UI\u8DEF\u5F84
-    base-package: com.zzf.music.**.controller  # \u626B\u63CF\u63A5\u53E3\u7684\u5305\u8DEF\u5F84
-    user-name: admin  # \u7528\u6237\u540D
-    password: 123456  # \u5BC6\u7801
-
-
