@@ -1,12 +1,9 @@
 server:
-  port: 8930
+  port: 8970
 
 spring:
   application:
-    name: identity
-#  main:
-#    web-application-type: reactive
-#    allow-bean-definition-overriding: true
+    name: comment
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource # \u6307\u5B9A\u4F7F\u7528\u963F\u91CC\u8FDE\u63A5\u6C60
     url: jdbc:mysql://192.144.239.113:3306/music?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false&allowMultiQueries=true
@@ -15,7 +12,6 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver # \u6307\u5B9A\u4F7F\u7528MySQL\u9A71\u52A8
   jpa:
     open-in-view: false # \u5173\u95EDJPA\u81EA\u52A8\u521B\u5EFA\u89C6\u56FE
-
   redis:
     host: 192.144.239.113
     port: 6379
@@ -23,7 +19,7 @@ spring:
     database: 0
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.zzf.music.identity.entity
+  type-aliases-package: com.zzf.music.comment.entity
   global-config:
     db-config:
       logic-delete-value: 1

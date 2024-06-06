@@ -1,0 +1,4 @@
+com\zzf\music\platform\entity\ResponseResult.class
+com\zzf\music\platform\uid\IdGenServiceImpl.class
+com\zzf\music\platform\uid\IdGenService.class
+com\zzf\music\platform\uid\SnowflakeIdGenerator.class

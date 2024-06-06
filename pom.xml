@@ -12,6 +12,13 @@
         <module>user</module>
         <module>platform</module>
         <module>gateway</module>
+        <module>song</module>
+        <module>comment</module>
+        <module>search</module>
+        <module>configuration</module>
+        <module>registry</module>
+        <module>message</module>
+        <module>mv</module>
     </modules>
     <!--    pom 代表是父工程配置-->
     <packaging>pom</packaging>

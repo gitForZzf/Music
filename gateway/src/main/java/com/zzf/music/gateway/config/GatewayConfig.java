@@ -22,7 +22,7 @@ public class GatewayConfig {
         return builder.routes()
                 .route("music_user_route", r -> r.path("/music/user/**")
                         .filters(f -> f.rewritePath("/music/user/(?<segment>.*)", "/user/${segment}"))
-                        .uri("http://127.0.0.1:8910"))
+                        .uri("http://127.0.0.1:8940"))
                 .build();
     }
 }
